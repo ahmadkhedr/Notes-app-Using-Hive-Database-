@@ -6,8 +6,8 @@ class CustomSerachIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45.0,
-      width: 45.0,
+      height: 50.0,
+      width: 50.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         color: Colors.grey.withOpacity(.1),
@@ -15,6 +15,7 @@ class CustomSerachIcon extends StatelessWidget {
       child: const Center(
         child: Icon(
           Icons.search,
+          size: 30.0,
         ),
       ),
     );
