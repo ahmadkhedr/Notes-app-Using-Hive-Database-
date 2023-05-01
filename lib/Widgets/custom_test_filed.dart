@@ -5,14 +5,22 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../constants.dart';
 
 class CustomTextFiled extends StatelessWidget {
-  const CustomTextFiled({super.key});
+  const CustomTextFiled({
+    super.key,
+    required this.hintText,
+     this.maxLines = 1 ,
+  });
+  final String hintText;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: kPrimaryColor,
+      maxLines: maxLines,
       decoration: InputDecoration(
-          hintText: "Title",
+          hintText: hintText,
+          alignLabelWithHint: true,
           border: buildBorder(),
           enabledBorder: buildBorder(),
           focusedBorder: buildBorder(kPrimaryColor)),
