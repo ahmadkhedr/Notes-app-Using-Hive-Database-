@@ -11,7 +11,7 @@ class EditNoteViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBody(
       customAppBarTitle: 'Edit Note',
-      onTap: () {},
+      //  onTap: () {},
       isEdit: true,
     );
   }

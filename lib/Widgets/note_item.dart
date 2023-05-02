@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app_hive/views/edit_note.dart';
 
+import '../models/note_model.dart';
+
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({
+    super.key,
+    required this.item,
+  });
+  final NoteModel item;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print(item.color);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
@@ -23,14 +30,14 @@ class NoteItem extends StatelessWidget {
             vertical: 24.0,
           ),
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: Color(item.color),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(children: [
             ListTile(
-              title: const Text(
-                "Flutter Tips",
-                style: TextStyle(
+              title: Text(
+                item.title,
+                style: const TextStyle(
                   fontSize: 26.0,
                   color: Colors.black,
                 ),
@@ -38,7 +45,7 @@ class NoteItem extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
-                  "Build Your Carer With Tharat Samy",
+                  item.subTitle,
                   style: TextStyle(
                     fontSize: 21.0,
                     color: Colors.black.withOpacity(.6),
@@ -56,7 +63,7 @@ class NoteItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 0.0, bottom: 0.0),
                   child: Text(
-                    "May 21 2023",
+                    item.date,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.black.withOpacity(.6),

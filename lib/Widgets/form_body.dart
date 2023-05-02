@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:notes_app_hive/cubits/cubit/add_note_cubit.dart';
+import 'package:notes_app_hive/models/note_model.dart';
 
 import 'custom_app_bar.dart';
 import 'custom_button.dart';
 import 'custom_test_filed.dart';
+import '';
 
 class FormBody extends StatefulWidget {
   const FormBody({
     super.key,
     required this.customAppBarTitle,
-    required this.onTap,
+    // required this.onTap,
     this.isEdit = false,
   });
   final String customAppBarTitle;
-  final void Function()? onTap;
+  // final void Function()? onTap;
   final bool isEdit;
 
   @override
@@ -66,14 +71,29 @@ class _FormBodyState extends State<FormBody> {
             const SizedBox(
               height: 62.0,
             ),
-            CutomButton(
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                } else {
-                  validateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
+            BlocBuilder<AddNoteCubit, AddNoteState>(
+              builder: (context, state) {
+                return CutomButton(
+                  isLoading: state is AddNoteLoading ? true : false,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      var time = DateTime.now();
+                      String formattedCurrentDate =
+                          DateFormat('dd-mm-yyyy').format(time);
+                      var model = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: formattedCurrentDate,
+                        color: Colors.blue.value,
+                      );
+                      BlocProvider.of<AddNoteCubit>(context).addNote(model);
+                    } else {
+                      validateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );
               },
             ),
             const SizedBox(

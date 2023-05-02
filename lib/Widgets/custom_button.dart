@@ -5,8 +5,10 @@ class CutomButton extends StatelessWidget {
   const CutomButton({
     super.key,
     required this.onTap,
+    this.isLoading = false,
   });
   final void Function()? onTap;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +23,13 @@ class CutomButton extends StatelessWidget {
             8,
           ),
         ),
-        child: const Center(
-            child: Text(
-          "Add",
-          style: TextStyle(color: Colors.black, fontSize: 20.0),
-        )),
+        child: Center(
+            child: isLoading
+                ? const CircularProgressIndicator()
+                : const Text(
+                    "Add",
+                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                  )),
       ),
     );
   }
