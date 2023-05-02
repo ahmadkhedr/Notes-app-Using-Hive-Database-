@@ -47,6 +47,7 @@ class _FormBodyState extends State<FormBody> {
               CustomAppBar(
                 iconValue: Icons.check,
                 titleText: widget.customAppBarTitle,
+                onIconTap: () {},
               ),
             ],
             const SizedBox(

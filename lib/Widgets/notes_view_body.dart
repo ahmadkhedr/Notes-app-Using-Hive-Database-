@@ -28,15 +28,18 @@ class _NotesViewBodyState extends State<NotesViewBody> {
         horizontal: 24.0,
       ),
       child: Column(
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             height: 60.0,
           ),
           CustomAppBar(
             iconValue: Icons.search,
             titleText: 'Notes',
+            onIconTap: () {
+              print("Notes Pressed");
+            },
           ),
-          Expanded(child: NotesListView())
+          const Expanded(child: NotesListView())
         ],
       ),
     );

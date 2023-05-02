@@ -7,9 +7,12 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     required this.iconValue,
     required this.titleText,
+    required this.onIconTap,
   });
   final String titleText;
   final IconData iconValue;
+  final void Function() onIconTap;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,6 +26,7 @@ class CustomAppBar extends StatelessWidget {
         ),
         CustomSerachIcon(
           iconValue: iconValue,
+          onIconTap: onIconTap,
         )
       ],
     );
